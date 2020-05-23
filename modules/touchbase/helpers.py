@@ -12,12 +12,16 @@ def get_job(filename):
     job = jobs[filename]
     return job
 
-def get_df(filename): 
-    watch_path = config['watched_folders'][0]
-    df = pd.read_csv(watch_path + '/' + filename)
+def stringify_datetime_columns(df):
     datetime_columns = df.select_dtypes(include=[np.datetime64]).columns
     for col in datetime_columns:
         df[col] = df[col].dt.strftime('%Y-%m-%d')    
+    return df
+
+def get_df(filename): 
+    watch_path = config['watched_folders'][0]
+    df = pd.read_csv(watch_path + '/' + filename)
+    df = stringify_datetime_columns(df)
     return df
 
 def push_report(df, job, api_key):

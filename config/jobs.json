@@ -1,8 +1,8 @@
 {
-    "raaplijst.csv": {
-        "job": "default.py",
-        "report_path": ["Magazijn"],
-        "report_name": "Raaplijst",
-        "id_headers": ["Ordernummer"]
+    "open_verkooporders.json": {
+        "job": "verkooporders.py",
+        "report_path": ["Verkoop"],
+        "report_name": "Verkooporders",
+        "id_headers": ["Verkooporder"]
     } 
 }
