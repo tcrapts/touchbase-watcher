@@ -1,0 +1,8 @@
+{
+    "raaplijst.csv": {
+        "job": "default.py",
+        "report_path": ["Magazijn"],
+        "report_name": "Raaplijst",
+        "id_headers": ["Ordernummer"]
+    } 
+}
