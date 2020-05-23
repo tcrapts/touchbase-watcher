@@ -1,0 +1,7 @@
+ {
+     "1/changeme.csv": {
+        "job": "default.py",
+        "report_path": ["Department"],
+        "report_name": "Test"
+    }
+}

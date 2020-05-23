@@ -1,0 +1,16 @@
+version: "3"
+services:
+    watcher:
+        build:
+            context: .
+        volumes:
+            - ${PWD}:/script
+            # Map watched directories. Map each watched directory to /dir/1, dir/2, and so on.
+            - ${PWD}/watched_dir:/dir/1
+            # Example1
+            - /home/terry/dummy:/dir/2
+        environment:
+            - API_URL=https://api.touchbase.report/api/
+        env_file:
+            - .env
+        image: docker-python-watcher
