@@ -4,6 +4,8 @@ import pandas as pd
 import requests
 import os
 
+with open('config/global.json') as f: config = json.load(f)    
+
 def get_job(filename):
     with open('config/jobs.json') as f:
         jobs = json.load(f)
@@ -11,7 +13,8 @@ def get_job(filename):
     return job
 
 def get_df(filename): 
-    df = pd.read_csv('./../dir/' + filename)
+    watch_path = config['watched_folders'][0]
+    df = pd.read_csv(watch_path + '/' + filename)
     datetime_columns = df.select_dtypes(include=[np.datetime64]).columns
     for col in datetime_columns:
         df[col] = df[col].dt.strftime('%Y-%m-%d')    
@@ -25,5 +28,5 @@ def push_report(df, job, api_key):
         'id_headers': job['id_headers'] if 'id_headers' in job else [],
         'api_key': api_key
     }
-    r = requests.post(os.environ['API_URL'] + 'report/', json=payload)
+    r = requests.post(config['api_url'] + 'report/', json=payload)
     print('pushed ' + job['report_name'] +'; status: ' + str(r.status_code))

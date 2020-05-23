@@ -1,9 +1,7 @@
-.env
+config/api_key.json
 modules/__pycache__
 modules/touchbase/__pycache__
 jobs/*
 config/*
 watched_dir/*
 !jobs/default.py
-!config/jobs.json.example
-!watched_dir/changeme.csv

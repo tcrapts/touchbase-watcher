@@ -8,7 +8,9 @@ import pathlib
 import json
 
 # Configure
-watch_path = './../dir'
+with open('config/global.json') as f: config = json.load(f)    
+watch_path = config['watched_folders'][0]
+print(watch_path)
 logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s | %(message)s',
                     datefmt='%Y-%m-%d %H:%M:%S')
@@ -17,7 +19,7 @@ logging.basicConfig(level=logging.INFO,
 def process_file(src_path):
     with open('config/jobs.json') as f: jobs = json.load(f)    
     p = pathlib.Path(src_path)
-    relevant_path = '/'.join(str(x) for x in p.parts[2:])
+    relevant_path = os.path.basename(src_path)
     job_defined = (relevant_path in jobs) and ('job' in jobs[relevant_path])
     if not job_defined: logging.error('No job defined for ' + relevant_path)
     if job_defined:
