@@ -24,8 +24,9 @@ def process_file(src_path):
         logging.error('No job defined for ' + relevant_path)
     else:
         job = config['jobs'][relevant_path]
+        absolute_path = os.path.abspath(src_path)
         logging.info('Starting ' + job)
-        os.system('python -u ' + config['job_dir'] + '/' + job + ' ' + relevant_path)
+        os.system('python -u ' + config['job_dir'] + '/' + job + ' ' + absolute_path)
 
 class WatcherEventHandler(FileSystemEventHandler):
     def on_created(self, event):

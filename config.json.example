@@ -1,6 +1,6 @@
 {
     "watch_dir": "./watched_dir",
-    "job_dir": "/home/user/jobs",
+    "job_dir": "./jobs",
     "jobs": {
         "changeme.csv": "default.py"
     }
