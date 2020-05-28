@@ -5,7 +5,7 @@ A simple, isolated watcher that is suited for pushing data to Touchbase. The goa
 The package manager [poetry](https://github.com/python-poetry/poetry) can be used. When used, prepend every command with `poetry run`, e.g. `poetry run python watcher.py`.
 
 1. When using Poetry (optional): install required packages: `poetry install`. 
-2. Create a `config.json` file based on `config.json.example`.
+2. Create a `config.json` file based on `config.json.example`:
 ```json
 {
     "watch_dir": "./watched_dir",
