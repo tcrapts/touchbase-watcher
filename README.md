@@ -6,7 +6,16 @@ The package manager [poetry](https://github.com/python-poetry/poetry) can be use
 
 1. When using Poetry (optional): install required packages: `poetry install`. 
 2. Create a `config.json` file based on `config.json.example`.
-    * `watch_dir` is the directory that will be watched
-    * `job_dir` is the directory where the jobs are located. A job is a Python script, it will get the full path from the modified file as the first argument.
-    * `jobs` lists the files and correspondings jobs.
-3. Start: `python watch.py`
+```json
+{
+    "watch_dir": "./watched_dir",
+    "job_dir": "./jobs",
+    "jobs": {
+        "changeme.csv": "default.py"
+    }
+}
+```
+* `watch_dir` is the directory that will be watched
+* `job_dir` is the directory where the jobs are located. A job is a Python script, it will get the full path from the modified file as the first argument.
+* `jobs` lists the files and correspondings jobs.
+3. Start watching: `python watch.py`
