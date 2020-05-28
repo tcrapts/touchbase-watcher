@@ -8,23 +8,24 @@ import pathlib
 import json
 
 # Configure
-with open('config/global.json') as f: config = json.load(f)    
-watch_path = config['watched_folders'][0]
-print(watch_path)
+with open('config.json') as f: config = json.load(f)    
+watch_dir = config['watch_dir']
+
 logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s | %(message)s',
                     datefmt='%Y-%m-%d %H:%M:%S')
 
 # Watcher
 def process_file(src_path):
-    with open('config/jobs.json') as f: jobs = json.load(f)    
     p = pathlib.Path(src_path)
     relevant_path = os.path.basename(src_path)
-    job_defined = (relevant_path in jobs) and ('job' in jobs[relevant_path])
-    if not job_defined: logging.error('No job defined for ' + relevant_path)
-    if job_defined:
-        job = jobs[relevant_path]['job'] 
-        os.system('python -u jobs/' + job + ' ' + relevant_path)
+    job = config['jobs'][relevant_path] if relevant_path in config['jobs'] else None
+    if job == None:
+        logging.error('No job defined for ' + relevant_path)
+    else:
+        job = config['jobs'][relevant_path]
+        logging.info('Starting ' + job)
+        os.system('python -u ' + config['job_dir'] + '/' + job + ' ' + relevant_path)
 
 class WatcherEventHandler(FileSystemEventHandler):
     def on_created(self, event):
@@ -38,7 +39,8 @@ class WatcherEventHandler(FileSystemEventHandler):
 if __name__ == "__main__":    
     event_handler = WatcherEventHandler()
     observer = Observer()
-    observer.schedule(event_handler, watch_path, recursive=True)
+    observer.schedule(event_handler, watch_dir, recursive=True)
+    logging.info('Watcher started')
     observer.start()
     try:
         while True:

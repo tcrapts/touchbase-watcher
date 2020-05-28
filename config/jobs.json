@@ -1,8 +1,0 @@
-{
-    "open_verkooporders.json": {
-        "job": "verkooporders.py",
-        "report_path": ["Verkoop"],
-        "report_name": "Verkooporders",
-        "id_headers": ["Verkooporder"]
-    } 
-}

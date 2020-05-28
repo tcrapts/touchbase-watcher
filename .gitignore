@@ -1,5 +1,3 @@
-config/api_key.json
-modules/__pycache__
-modules/touchbase/__pycache__
-!jobs/default.py
-!watched_dir/raaplijst.csv
+.vscode
+poetry.lock
+config.json
