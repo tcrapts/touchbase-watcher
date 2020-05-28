@@ -1,5 +1,5 @@
 # Touchbase watcher
-A simple, isolated watcher that is suited for pushing data to Touchbase. The goal is to run a Python script every time a file is created or modified.
+A simple, isolated watcher that can be used for pushing data to Touchbase. The goal is to run a Python script every time a file is created or modified.
 
 ## Usage
 The package manager [poetry](https://github.com/python-poetry/poetry) can be used. When used, prepend every command with `poetry run`, e.g. `poetry run python watcher.py`.
@@ -19,3 +19,6 @@ The package manager [poetry](https://github.com/python-poetry/poetry) can be use
 * `job_dir` is the directory where the jobs are located. A job is a Python script, it will get the full path from the modified file as the first argument.
 * `jobs` lists the files and correspondings jobs.
 3. Start watching: `python watch.py`
+
+## Pushing to Touchbase
+Check out [this demo](https://github.com/tcrapts/touchbase-demo) for more details on pushing to the Touchbase API.
